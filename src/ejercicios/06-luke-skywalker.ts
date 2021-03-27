@@ -48,10 +48,8 @@ import { zip, of } from 'rxjs';
   getRequest(`${SW_API}/people/3/`)
     .pipe(
       // Realizar los operadores respectivos aquí
-      switchMap((personaje) =>
-        zip(of(personaje), getRequest(personaje.species[0]))
-      ),
-      map(([personaje, especie]) => ({ personaje, especie }))
+      map((resp) => resp.species[0]),
+      switchMap((url) => getRequest(url))
       // NO TOCAR el subscribe ni modificarlo ==
     )
     .subscribe(console.log); // ==
