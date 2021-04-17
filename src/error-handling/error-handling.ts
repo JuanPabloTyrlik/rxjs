@@ -1,6 +1,8 @@
 import { of } from 'rxjs';
 import { catchError, map, materialize, switchMap } from 'rxjs/operators';
 
+// https://iamturns.medium.com/continue-rxjs-streams-when-errors-occur-c6a031f9a6cf
+
 const source$ = of('a', 2, 'c', new Error(), 'e');
 
 // To recover from an error generated on source, materialize-dematerialize can be used
